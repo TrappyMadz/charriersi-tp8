@@ -31,7 +31,7 @@ int main(int argc, char ** argv)
 {
     char* result;
 
-    result = cesar("ZACK",1);
+    result = vinegere("HELLO","KEY");
     printf("%s\n",result);
     free(result);
     return 0;
