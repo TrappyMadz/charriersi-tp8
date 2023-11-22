@@ -3,7 +3,7 @@
 # Définition des variables :
 
 # Numéro du tp, utile pour les noms de certains fichiers
-NUM_TP := X
+NUM_TP := 8
 
 # Répertoires
 REP_SRC := src
@@ -22,7 +22,7 @@ OBJ := $(patsubst $(REP_SRC)/%.c, $(REP_EXE)/%.o, $(SRC))
 
 
 # Définition du nom de l'exécutable et de son emplacement final
-EXE := charriersi-tp$(NUM_TP).out
+EXE := chiffr.out
 CHE_EXE := $(REP_EXE)/$(EXE)
 
 #Liste des extensions de fichiers à supprimer avec clean dans le répertoire source
@@ -63,12 +63,8 @@ doc: $(REP_DOC)/Doxyfile
 # Cible pour générer seulement le fichier Doxyfile
 cdoc: $(REP_DOC)/Doxyfile
 
-# Cible exe
-exe:
-	./$(CHE_EXE)
-
 # Cible dir
 dir:
 	mkdir bin doc src
 
-.PHONY: all clean doc exe cdoc dir
+.PHONY: all clean doc cdoc dir

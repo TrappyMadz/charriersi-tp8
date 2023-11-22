@@ -1,9 +1,9 @@
-# charriersi-tpX
-CY-Tech ING1 Programmation procédurale TPX
+# charriersi-tp8
+CY-Tech ING1 Programmation procédurale TP8
 
 ## Compilation du code
 
-Pour compiler le code, il faut ouvrir un terminal dans le dossier "charriersi-tpX" puis entrer la commande suivante :
+Pour compiler le code, il faut ouvrir un terminal dans le dossier "charriersi-tp8" puis entrer la commande suivante :
 
 ```bash
 make
@@ -13,12 +13,17 @@ Les fichiers .o et les executables se trouveront dans le dossier bin
 
 ## Execution du programme
 
-Pour executer le programme, toujours dans le terminal se trouvant dans le dossier "charriersi-tpX", il faut entrer la commande :
+Pour executer le programme, toujours dans le terminal se trouvant dans le dossier "charriersi-tp8", il faut entrer la commande :
 
 ```bash
-make exe
+./bin/chiffr.out arguments
 ```
-Le programme devrait commencer à s'executer automatiquement
+Le programme devrait commencer à s'executer automatiquement avec les arguments.
+Pour une liste des arguments, n'hésitez pas à utiliser
+
+```bash
+./bin/chiffr.out --help
+```
 
 ## Génération du doxygen
 

@@ -9,8 +9,9 @@
 // Importations
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
-#include "utiles.h"
+#include "chiffrement.h"
 
 // Définitions
 #define ERREUR -1
@@ -28,50 +29,10 @@
 */
 int main(int argc, char ** argv) 
 {
-    // Déclaration des variables
-    // Choix du menu
-    int int_choix;
-    // Vérification
-    int int_verif;
-    // Taille du tableau et Tableau
-    int int_taille;
-    int* pint_tab;
+    char* result;
 
-    printf("----------------------------------\n");
-	printf("---------------Menu---------------\n");
-	printf("----------------------------------\n");
-	printf("----Quelle fonction utiliser ?----\n");
-	printf("----------------------------------\n");
-	printf("- 1.                             -\n");
-	printf("- 2. Retour                      -\n");
-	printf("----------------------------------\n");
-	printf("----------------------------------\n");
-
-	int_verif = scanf("%d",&int_choix);
-
-	while (int_verif!=1)
-	{
-		printf("Veuillez entrer une option valide.\n");
-		int_verif = scanf("%d",&int_choix);
-	}
-
-    switch (int_choix)
-    {
-    case 1 :
-
-
-        break;
-        
-    case 2 :
-
- 	printf("Sortie du programme\n");
-        exit(SORTIE);
-        break;
- 
-    default:
-        printf("Sortie du programme\n");
-        exit(SORTIE);
-        break;
-    }
+    result = cesar("ZACK",1);
+    printf("%s\n",result);
+    free(result);
     return 0;
 }
