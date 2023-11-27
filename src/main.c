@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 
 #include "chiffrement.h"
 
@@ -31,7 +32,7 @@ int main(int argc, char ** argv)
 {
     char* result;
 
-    result = vinegere("HELLO","KEY");
+    result = scytale("RENDEZ VOUS DEMAIN SOIR A LA TIREUSE");
     printf("%s\n",result);
     free(result);
     return 0;

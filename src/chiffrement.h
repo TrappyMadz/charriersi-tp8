@@ -3,4 +3,6 @@
 
 char* cesar(char* pchar_message, int int_decalage);
 char* vinegere(char* pchar_message, char* pchar_cleent);
+char* scytale(char* pchar_message);
+
 #endif

@@ -3,7 +3,7 @@
 # Définition des variables :
 
 # Numéro du tp, utile pour les noms de certains fichiers
-NUM_TP := 8
+NUM_TP := X
 
 # Répertoires
 REP_SRC := src
@@ -12,7 +12,7 @@ REP_DOC := doc
 
 # Compilation
 CC := gcc
-COPTION := -Wall -lm
+COPTION := -Wall -Og -ggdb
 
 # Liste des fichiers sources
 SRC := $(wildcard $(REP_SRC)/*.c)
@@ -22,7 +22,7 @@ OBJ := $(patsubst $(REP_SRC)/%.c, $(REP_EXE)/%.o, $(SRC))
 
 
 # Définition du nom de l'exécutable et de son emplacement final
-EXE := chiffr.out
+EXE := charriersi-tp$(NUM_TP).out
 CHE_EXE := $(REP_EXE)/$(EXE)
 
 #Liste des extensions de fichiers à supprimer avec clean dans le répertoire source
@@ -38,11 +38,11 @@ all: $(CHE_EXE)
 
 # Règle de compilation
 $(CHE_EXE): $(OBJ)
-	$(CC) $(COPTION) $^ -o $@
+	$(CC) $(COPTION) $^ -o $@ -lm
 
 # Règle pour les fichiers objets
 $(REP_EXE)/%.o: $(REP_SRC)/%.c
-	$(CC) $(COPTION) -c $< -o $@
+	$(CC) $(COPTION) -c $< -o $@ -lm
 
 
 
@@ -63,8 +63,12 @@ doc: $(REP_DOC)/Doxyfile
 # Cible pour générer seulement le fichier Doxyfile
 cdoc: $(REP_DOC)/Doxyfile
 
+# Cible exe
+exe:
+	./$(CHE_EXE) 
+
 # Cible dir
 dir:
 	mkdir bin doc src
 
-.PHONY: all clean doc cdoc dir
+.PHONY: all clean doc exe cdoc dir

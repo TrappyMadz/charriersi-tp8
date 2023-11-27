@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "chiffrement.h"
 
@@ -141,4 +142,119 @@ char* vinegere(char* pchar_message, char* pchar_cleent)
     free(pchar_clesort);
     return pchar_result;
 
+}
+
+char* scytale(char* pchar_message)
+{
+    // Déclaration des variables
+    // Compteurs de boucle
+    int int_i=0;
+    int int_j;
+    // Compteur "où en est-on dans le message ?"
+    int int_mess=0;
+    // Taille du messages
+    int int_taille=0;
+    // Table intérmédiaire (pour ne pas modifier le message d'origine)
+    char* pchar_messageint;
+    // Tableau intermédiaire
+    char** ppchar_inte;
+    // Taille du tableau intermédiaire (lignes ou colonnes)
+    int int_tailleint=0;
+    // Message finale
+    char* pchar_result;
+
+    // On a besoins de la taille du message
+    while (pchar_message[int_taille] != '\0')
+    {
+        int_taille++;
+    }
+
+    // On alloue le tableau intermédiaire
+    pchar_messageint = malloc(int_taille * sizeof *pchar_messageint);
+    if (pchar_messageint == NULL)
+    {
+        fprintf(stderr, "Erreur d'allocation\n");
+        exit(ERREUR);
+    }
+
+    for (int_i = 0 ; int_i < int_taille ; int_i++)
+    {
+        pchar_messageint[int_i] = pchar_message[int_i];
+    }
+
+    // On forme un tableau de la bonne taille en faisant racine(taille)
+    int_tailleint = sqrt(int_taille);
+
+    // Si c'est un entier, on a notre bonne taille de tableau (rint arrondi à l'entier le plus proche, donc cela permet de detecter si un nombre est entier)
+    // Si on en trouve pas, on ajoute des espaces à notre tchar_message pour completer
+    while (int_tailleint != rint(int_tailleint))
+    {
+        pchar_messageint = (char*)realloc(pchar_messageint, int_taille * sizeof(char));
+        if (pchar_messageint == NULL)
+        {
+            fprintf(stderr, "Erreur d'allocation\n");
+            exit(ERREUR);
+        }
+        pchar_messageint[int_taille] = ' ';
+        int_taille++;
+        int_tailleint = sqrt(int_taille);
+    }
+    
+    // On créer le tableau intermédiaire
+    ppchar_inte = malloc(int_tailleint * sizeof *ppchar_inte);
+    if (ppchar_inte == NULL)
+    {
+        fprintf(stderr, "Erreur d'allocation\n");
+        exit(ERREUR);
+    }
+    for (int_i = 0 ; int_i < int_tailleint ; int_i++)
+    {
+        ppchar_inte[int_i] = (char*)malloc(int_tailleint * sizeof(char));
+        if (ppchar_inte[int_i] == NULL)
+        {
+        fprintf(stderr, "Erreur d'allocation\n");
+        exit(ERREUR);
+        }
+    }
+
+    // On attribue en lignes les lettres du message
+    for (int_j = 0 ; int_j < int_tailleint ; int_j++)
+    {
+        for (int_i = 0 ; int_i < int_tailleint ; int_i++)
+        {
+            ppchar_inte[int_i][int_j] = pchar_messageint[int_mess];
+            int_mess++;
+        }
+    }
+
+    // On alloue le tableau resultat
+    pchar_result = (char*)malloc(int_taille * sizeof(char));
+    if (pchar_result == NULL)
+    {
+        fprintf(stderr, "Erreur d'allocation\n");
+        exit(ERREUR);
+    }
+
+    // Puis on applique au message de fin les lettres lues en colonnes
+    int_mess = 0;
+    for (int_i = 0 ; int_i < int_tailleint ; int_i++)
+    {
+        for (int_j = 0 ; int_j < int_tailleint ; int_j++)
+        {
+            if (int_mess < int_taille)
+            {
+                pchar_result[int_mess] = ppchar_inte[int_i][int_j];
+                int_mess++;
+            }
+        }
+    }
+
+    // On free la table intermédiaire, et la table modifiée
+    free(pchar_messageint);
+    for (int_i = 0 ; int_i < int_tailleint ; int_i++)
+    {
+        free(ppchar_inte[int_i]);
+    }
+    free(ppchar_inte);
+    return pchar_result;
 }
