@@ -25,7 +25,7 @@ char* cesar(char* pchar_message, int int_decalage)
     }
 
     // Allocation de la mémoire du resultat
-    pchar_result = (char*)malloc((int_taille + 1) * sizeof(char));
+    pchar_result = malloc((int_taille + 1) * sizeof pchar_result);
     if (pchar_result == NULL)
     {
         fprintf(stderr, "Erreur d'allocation mémoire");
@@ -35,13 +35,13 @@ char* cesar(char* pchar_message, int int_decalage)
     // Parcours du mot
     for (int_i = 0 ; int_i < int_taille ; int_i++)
     {
-        // Décalage
-        pchar_result[int_i] = pchar_message[int_i] + int_decalage;
 
         // On gère le dépassement (si le résultat > z, on retourne à a en soustrayant 26) et inversement
         // Si la lettre est Majuscule
         if (pchar_message[int_i] >= 'A' && pchar_message[int_i] <= 'Z')
         {
+            pchar_result[int_i] = (pchar_message[int_i] - 'A' + int_decalage + 26) % 26 + 'A';
+
             if (pchar_result[int_i] > 'Z')
             {
                 pchar_result[int_i] -= 26;
@@ -56,15 +56,20 @@ char* cesar(char* pchar_message, int int_decalage)
         // Si elle est minuscule
         if (pchar_message[int_i] >= 'a' && pchar_message[int_i] <= 'z')
         {
+            pchar_result[int_i] = (pchar_message[int_i] - 'a' + int_decalage + 26) % 26 + 'a';
             if (pchar_result[int_i] > 'z')
             {
                 pchar_result[int_i] -= 26;
             }
 
-            if (pchar_result[int_i] < 'A')
+            if (pchar_result[int_i] < 'a')
             {
                 pchar_result[int_i] += 26;
             }
+        }
+        else
+        {
+            pchar_result[int_i] = pchar_message[int_i];
         }
     }
 
