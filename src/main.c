@@ -30,10 +30,24 @@
 */
 int main(int argc, char ** argv) 
 {
-    char* result;
+    // On doit obligatoirement prendre au moins un argument
 
-    result = scytale("RENDEZ VOUS DEMAIN SOIR A LA TIREUSE");
-    printf("%s\n",result);
-    free(result);
+    // --help renvoie l'aide et les explications sur tous les arguments possibles
+
+    // -c <nom_méthode> permet de choisir la méthode
+
+    // arguments optionnels
+
+    // -d permet de choisir le décalage de la fonction césar
+
+    // -k <clé> permet de choisir la clé pour Vigenère
+
+    // -m <message> permet d'entrer le message à chiffrer
+
+    // Pour toutes les possibilités, on partira du principe que l'utilisateur entrera les arguments sous cette forme :
+    // ./TP -c <nom_méthode> -d/k <clé ou décalage> -m <message>
+    // On ne prendra en compte que cette ordre, sinon on renverra un message d'erreur
+
+
     return 0;
 }
