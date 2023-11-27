@@ -35,9 +35,17 @@ make doc
 Le fichier de configuration ainsi que la documentation se trouvent dans le répertoire doc.
 
 ## Description du code
-# main
-La fonction main sert juste à gerer les arguments à mettre.
+Aucune des fonctions qui suivent ne prennent dez caractères spéciaux autre que l'espace en paramètre.
+### main
+La fonction main sert à gerer les arguments à mettre.
 
-# César
+### César
 Renvoie la chaîne entrée avec un décalage. Si le résultat se trouverais après la dernière lettre ou avant la première lettre (z ou a), alors on reviens au début ou à la fin de l'alphabet.
 Si il y a un symbole dans l'expression, il sera inchangé.
+
+### Vinegère
+Renvoie la chaîne décalée grâce à la clé.
+La clé ne doit pas contenir d'espaces.
+
+### Scytale
+Renvoie la chaîne chiffrée

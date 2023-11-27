@@ -134,10 +134,24 @@ char* vinegere(char* pchar_message, char* pchar_cleent)
     // On parcours le mot
     for (int_i = 0 ; int_i < int_taille ; int_i++)
     {
-        // On décale le résultat du bon nombre, tout en s'assurant que ce résultat reste dans la bonne plage
-        pchar_result[int_i] = pchar_message[int_i] - 'A' + pchar_clesort[int_i] - 'A';
+        if (pchar_message[int_i] >= 'A' && pchar_message[int_i] <= 'Z')
+        {
+            // On décale le résultat du bon nombre, tout en s'assurant que ce résultat reste dans la bonne plage
+            pchar_result[int_i] = pchar_message[int_i] - 'A' + pchar_clesort[int_i] - 'A';
 
-        pchar_result[int_i] = (pchar_result[int_i] % 26 + 26) % 26 + 'A';
+            pchar_result[int_i] = (pchar_result[int_i] % 26 + 26) % 26 + 'A';
+        }
+        else if (pchar_message[int_i] >= 'a' && pchar_message[int_i] <= 'z')
+        {
+            pchar_result[int_i] = pchar_message[int_i] - 'a' + pchar_clesort[int_i] - 'a';
+
+            pchar_result[int_i] = (pchar_result[int_i] % 26 + 26) % 26 + 'a';
+        }
+        // Pour les caractère qui ne sont pas des lettres, on ne les changes pas
+        else
+        {
+            pchar_result[int_i] = pchar_message[int_i];
+        }
     }
 
     // On ajoute la caractère de fin
