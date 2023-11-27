@@ -34,17 +34,17 @@ int main(int argc, char ** argv)
     // Décalage de la fonction César
     int int_d;
     // Clé de la fonction Vinegère
-    char* pchar_k="\n";
+    char* pchar_k="\0";
     // Taille de la clé
     int int_taillec=0;
     // Message
-    char* pchar_m;
+    char* pchar_m="\0";
     // Taille du message
     int int_taillem=0;
     // Taille pour le getline
     size_t nb;
     // Résultat
-    char* pchar_result="\n";
+    char* pchar_result="\0";
     // Vérification (scanf)
     int int_verif;
     // Compteur
@@ -124,6 +124,9 @@ int main(int argc, char ** argv)
                             int_i++;
                         }
                         printf("\n");
+                        //free
+                        free(pchar_m);
+                        free(pchar_result);
                         return 0;
                        
                     }
@@ -160,6 +163,9 @@ int main(int argc, char ** argv)
 
                 pchar_result = cesar(pchar_m,int_d);
                 printf("%s\n",pchar_result);
+                //free
+                free(pchar_m);
+                free(pchar_result);
                 return 0;
             }
 
@@ -219,6 +225,10 @@ int main(int argc, char ** argv)
                             int_i++;
                         }
                         printf("\n");
+                        //free
+                        free(pchar_m);
+                        free(pchar_result);
+                        free(pchar_k);
                         return 0;
                        
                     }
@@ -247,6 +257,10 @@ int main(int argc, char ** argv)
                 int_taillem = getline(&pchar_m,&nb,stdin);
                 pchar_result = vinegere(pchar_m,pchar_k);
                 printf("%s\n",pchar_result);
+                //free
+                free(pchar_m);
+                free(pchar_result);
+                free(pchar_k);
                 return 0;
             }
 
@@ -257,7 +271,7 @@ int main(int argc, char ** argv)
         if (strcmp(argv[2],"Scytale") == 0)
         {
             // Gestion du message pour Scytale
-            if (argc >= 3)
+            if (argc > 3)
             {
                 // -m <message> permet d'entrer le message à chiffrer
                 if (strcmp(argv[3],"-m") == 0)
@@ -288,32 +302,34 @@ int main(int argc, char ** argv)
                         int_i++;
                     }
                     printf("\n");
+                    //free
+                    free(pchar_m);
+                    free(pchar_result);
                     return 0;
                        
-                    }
+                }
                 else
                 {
                     fprintf(stderr,"Mauvais arguments. --help pour plus d'informations\n");
                     exit(ERREUR);
                 }
             }
+            // Si on a juste entrer -c Scytale
             else
             {
-                fprintf(stderr,"Mauvais nombre d'arguments. --help pour plus d'informations\n");
-                exit(ERREUR);
+                printf("Veuillez entrer le message à chiffrer : \n");
+                nb = 0;
+                int_taillem = getline(&pchar_m,&nb,stdin);
+                pchar_result = scytale(pchar_m);
+                printf("%s\n",pchar_result);
+                //free
+                free(pchar_m);
+                free(pchar_result);
+                return 0;
             }
         }
 
-        // Si on a juste entrer -c Scytale
-        else
-        {
-            printf("Veuillez entrer le message à chiffrer : \n");
-            nb = 0;
-            int_taillem = getline(&pchar_m,&nb,stdin);
-            pchar_result = scytale(pchar_m);
-            printf("%s\n",pchar_result);
-            return 0;
-        }
+
 
                 
     }
@@ -322,11 +338,5 @@ int main(int argc, char ** argv)
         fprintf(stderr,"Mauvais arguments. --help pour plus d'informations\n");
         exit(ERREUR);
     }
-
-    // Scytale
-    //free
-    free(pchar_m);
-    free(pchar_result);
-    free(pchar_k);
     return 0;
 }
