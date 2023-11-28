@@ -1,3 +1,11 @@
+/*!
+\file chiffrement.c
+\author Charrier Simon
+\version 1
+\date 28 novembre 2023
+\brief Fonctions de chiffrement
+*/
+
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,6 +15,7 @@
 
 #define ERREUR -1
 
+// Chiffrement via la méthode de César
 char* cesar(char* pchar_message, int int_decalage)
 {
     // Définition des variables
@@ -81,6 +90,7 @@ char* cesar(char* pchar_message, int int_decalage)
 }
 
 
+// Chiffrement via la méthode de Vinegère
 char* vinegere(char* pchar_message, char* pchar_cleent)
 {
     // Déclaration des variables
@@ -163,6 +173,8 @@ char* vinegere(char* pchar_message, char* pchar_cleent)
 
 }
 
+
+// Chiffrement via la méthode de Scytale
 char* scytale(char* pchar_message)
 {
     // Déclaration des variables

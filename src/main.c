@@ -2,8 +2,8 @@
 \file main.c
 \author Charrier Simon
 \version 1
-\date 17 novembre 2023
-\brief Menu de séléction
+\date 28 novembre 2023
+\brief Permet de choisir la fonction à utilisée via les arguments
 */
 
 // Importations
@@ -22,8 +22,8 @@
 \fn int main (int argc, char** argv)
 \author Charrier Simon
 \version 1
-\date 17 novembre 2023
-\brief Affichage du menu
+\date 28 novembre 2023
+\brief Prise en compte des arguments pour choisir la fonction
 \param argc nombre d'arguments en entrée
 \param argv valeur des arguments en entrée
 \return 0 si tout c'est bien passé
